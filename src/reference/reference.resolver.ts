@@ -6,18 +6,18 @@ import { DeliveryType, OrderStatus, ProductStatus } from '../graphql'
 export class ReferenceResolver {
   constructor(private retailService: RetailService) {}
 
-  @Query()
-  async deliveryTypes(): Promise<DeliveryType[]> {
-    return this.retailService.deliveryTypes()
-  }
+  // @Query()
+  // async deliveryTypes(): Promise<DeliveryType[]> {
+  //   return this.retailService.deliveryTypes()
+  // }
 
-  @Query()
-  async productStatuses(): Promise<ProductStatus[]> {
-    return this.retailService.productStatuses()
-  }
+  // @Query()
+  // async productStatuses(): Promise<ProductStatus[]> {
+  //   return this.retailService.productStatuses()
+  // }
 
-  @Query()
-  async orderStatuses(): Promise<OrderStatus[]> {
-    return this.retailService.orderStatuses()
-  }
+  // @Query()
+  // async orderStatuses(): Promise<OrderStatus[]> {
+  //   return this.retailService.orderStatuses()
+  // }
 }

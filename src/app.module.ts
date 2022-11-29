@@ -5,10 +5,12 @@ import { RetailService } from './retail_api/retail.service'
 import { GraphQLModule } from '@nestjs/graphql'
 import { OrdersModule } from './orders/orders.module'
 import { ReferenceModule } from './reference/reference.module'
+import { ConfigModule } from '@nestjs/config'
 const { join } = require('path')
 
 @Module({
   imports: [
+    ConfigModule.forRoot({ isGlobal: true }),
     GraphQLModule.forRoot({
       typePaths: ['./**/*.graphql'],
       definitions: {

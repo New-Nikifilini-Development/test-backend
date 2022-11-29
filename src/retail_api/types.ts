@@ -1,73 +1,68 @@
-import { Type } from 'class-transformer'
+import { Type } from 'class-transformer';
 
 export type RetailPagination = {
-  limit: 20 | 50 | 100 | 250
-  totalCount: number
-  currentPage: number
-  totalPageCount: number
-}
-
+  limit: number; // 20 | 50 | 100 | 250
+  totalCount: number;
+  currentPage: number;
+  totalPageCount: number;
+};
 export type OrdersFilter = {
-  page?: number
-  limit?: 20 | 50 | 100 | 250
+  page?: number;
+  limit?: 20 | 50 | 100 | 250;
   filter?: {
-    numbers?: string[]
-    ids?: number[]
-    extendedStatus?: string[]
-    deliveryTypes?: string[]
-    createdAtFrom?: string
-    createdAtTo?: string
-  }
-}
+    numbers?: string[];
+    ids?: number[];
+    extendedStatus?: string[];
+    deliveryTypes?: string[];
+    createdAtFrom?: string;
+    createdAtTo?: string;
+  };
+};
 
 export class CrmType {
-  name: string
-  code: string
+  name: string;
+  code: string;
 }
 
 export type OrderItemProperty = {
-  code: string
-  name: string
-  value: string
-}
+  code: string;
+  name: string;
+  value: string;
+};
 
 export class OrderItemOffer {
-  externalId: string
-  displayName: string
-  article: string
-  properties: {
-    [key: string]: {
-      value: string
-      code: string
-    }
-  }
+  externalId?: string;
+  displayName?: string;
+  article?: string;
 }
 
 export class OrderItem {
-  id: number
-  status: string
-  quantity: number
+  id: number;
+  status: string;
+  quantity: number;
   @Type(() => OrderItemOffer)
-  offer: OrderItemOffer
-  comment: string
+  offer?: OrderItemOffer;
+  comment: string;
 }
 
 export class OrderDelivery {
-  code?: string
+  code?: string;
 }
 
 export class Order {
-  id: number
-  number: string
-  createdAt: string
-  status: string
-  statusComment: string
-  customerComment: string
+  id: number;
+  number: string;
+  createdAt: string;
   @Type(() => OrderDelivery)
-  delivery?: OrderDelivery
+  delivery?: OrderDelivery;
   @Type(() => OrderItem)
-  items: OrderItem[]
-  site: string
-  orderType: string
+  items: OrderItem[];
+  site?: string;
+  orderType: string;
+  status: string;
 }
 
+export class OrdersResponse {
+  orders?: Order[] | null;
+  pagination?: RetailPagination;
+}

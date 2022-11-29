@@ -1,18 +1,23 @@
 type Query {
-    getOrders(page: Int): OrdersResponse!
+    getAllOrders: OrdersResponse!
     order(number: String!): Order
 }
+#  getAllOrders(page: Int): OrdersResponse!
 
 type OrdersResponse {
-    orders: [Order]!
+    orders: [Order]
     pagination: Pagination!
 }
 
-type Pagination {
-    limit: Int!
-    totalCount: Int!
-    currentPage: Int!
-    totalPageCount: Int!
+type Order {
+    number: String!
+    id: Int!
+    site: String
+    createdAt: String!
+    status: String!
+    delivery: OrderDelivery
+    items: [OrderItem]!
+    orderType: String!
 }
 
 type OrderItemOffer {
@@ -29,17 +34,14 @@ type OrderItem {
     comment: String!
 }
 
-type Order {
-    number: String!
-    id: Int!
-    site: String!
-    createdAt: String!
-    status: String!
-    delivery: OrderDelivery
-    items: [OrderItem]!
-}
-
 type OrderDelivery {
     code: String
+}
+
+type Pagination {
+    limit: Int!
+    totalCount: Int!
+    currentPage: Int!
+    totalPageCount: Int!
 }
 

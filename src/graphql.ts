@@ -8,7 +8,7 @@
 /* tslint:disable */
 /* eslint-disable */
 export interface IQuery {
-    getOrders(page?: Nullable<number>): OrdersResponse | Promise<OrdersResponse>;
+    getAllOrders(): OrdersResponse | Promise<OrdersResponse>;
     order(number: string): Nullable<Order> | Promise<Nullable<Order>>;
     productStatuses(): Nullable<ProductStatus>[] | Promise<Nullable<ProductStatus>[]>;
     orderStatuses(): Nullable<OrderStatus>[] | Promise<Nullable<OrderStatus>[]>;
@@ -16,15 +16,19 @@ export interface IQuery {
 }
 
 export interface OrdersResponse {
-    orders: Nullable<Order>[];
+    orders?: Nullable<Nullable<Order>[]>;
     pagination: Pagination;
 }
 
-export interface Pagination {
-    limit: number;
-    totalCount: number;
-    currentPage: number;
-    totalPageCount: number;
+export interface Order {
+    number: string;
+    id: number;
+    site?: Nullable<string>;
+    createdAt: string;
+    status: string;
+    delivery?: Nullable<OrderDelivery>;
+    items: Nullable<OrderItem>[];
+    orderType: string;
 }
 
 export interface OrderItemOffer {
@@ -41,18 +45,15 @@ export interface OrderItem {
     comment: string;
 }
 
-export interface Order {
-    number: string;
-    id: number;
-    site: string;
-    createdAt: string;
-    status: string;
-    delivery?: Nullable<OrderDelivery>;
-    items: Nullable<OrderItem>[];
-}
-
 export interface OrderDelivery {
     code?: Nullable<string>;
+}
+
+export interface Pagination {
+    limit: number;
+    totalCount: number;
+    currentPage: number;
+    totalPageCount: number;
 }
 
 export interface DeliveryType {
